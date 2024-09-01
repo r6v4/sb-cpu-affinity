@@ -3,15 +3,15 @@ SB-CPU-AFFINITY is a simple API to Linux scheduler affinity masks for
 SBCL. See documentation of symbols exported from SB-CPU-AFFINITY
 package.
 
-## Author:
+## author:
 
   Nikodemus Siivola <nikodemus@random-state.net>
 
-## License:
+## license:
 
   MIT-style. See file LICENSE for details.
 
-## Bugs and Issues:
+## issues:
 
   Currently each call to GET-CPU-AFFINITY-MASK (and
   WITH-CPU-AFFINITY-MASK) mallocs 128 bytes of memory for the
@@ -28,35 +28,20 @@ git clone https://github.com/r6v4/sb-cpu-affinity.git
 cd sb-cpu-affinity
 
 make
-```
 
-## Usage example:
+sbcl
+```
 ```common-lisp
-  (ql:quickload :sb-cpu-affinity)
+(require :asdf)
 
-  (use-package :sb-cpu-affinity)
+(pushnew
+    (probe-file "../sb-cpu-affinity")
+    asdf:*central-registry* :test #'equal)
 
-  (with-cpu-affinity-mask (mask)
-    (print mask))
-
-  (with-cpu-affinity-mask (mask :save t)
-    ;; Remove all
-    (clear-cpu-affinity-mask mask)
-    ;; Set CPU 0.
-    (setf (cpu-affinity-p 0 mask) t))
- 
-  (with-cpu-affinity-mask (mask)
-    (print mask))
-
-  (with-cpu-affinity-mask (mask :save t)
-    ;; Only odd CPUs in mask.
-    (dotimes (cpu (cpu-count))
-      (setf (cpu-affinity-p cpu mask) (oddp cpu))))
-  
-  (with-cpu-affinity-mask (mask)
-    (print mask))
+(asdf:load-system :sb-cpu-affinity)
 ```
-## more example
+
+## example
 ```common-lisp
 (let ((all-worker-count (* 2 (sb-cpu-affinity:cpu-count)))
       (all-vcpu-count (sb-cpu-affinity:cpu-count)) )
