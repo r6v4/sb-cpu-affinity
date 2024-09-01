@@ -1,11 +1,11 @@
 ## info
-SB-CPU-AFFINITY is a simple API to Linux scheduler affinity masks for
-SBCL. See documentation of symbols exported from SB-CPU-AFFINITY
-package.
+
+  SB-CPU-AFFINITY is a simple API to Linux scheduler affinity masks for SBCL.    
+  See documentation of symbols exported from SB-CPU-AFFINITY package.
 
 ## author:
 
-  fork from [niko's repo](https://github.com/nikodemus/sb-cpu-affinity)
+  fork from [nikodemus's repo](https://github.com/nikodemus/sb-cpu-affinity)
 
 ## license:
 
@@ -13,12 +13,11 @@ package.
 
 ## issues:
 
-  Currently each call to GET-CPU-AFFINITY-MASK (and
-  WITH-CPU-AFFINITY-MASK) mallocs 128 bytes of memory for the
-  mask, which is never freed by the system -- at least not
-  on the Lisp side: freeing this memory causes glibc to complain
-  about a double-free, and breaks SBCL.
-  In other words, sbcl will not release each 128-byte mask created by the package when it is running.
+  Currently each call to GET-CPU-AFFINITY-MASK    
+  (and WITH-CPU-AFFINITY-MASK) mallocs 128 bytes of memory for the mask,    
+  which is never freed by the system -- at least not on the Lisp side:    
+  freeing this memory causes glibc to complain about a double-free, and breaks SBCL.    
+  In other words, sbcl will not release each 128-byte mask created by the package when it is running.    
   Wait until the sbcl process ends before releasing all resources.
 
 ## install
