@@ -61,7 +61,7 @@ make
 (let ((all-worker-count 16)
       (all-vcpu-count 8))
     (loop for my-worker-number from 0 to all-worker-count do
-        (let ((my-vcpu (nth 1 (floor my-worker-number all-vcpu-count))))
+        (let ((my-vcpu (nth-value 1 (floor my-worker-number all-vcpu-count))))
             (sb-thread:make-thread (lambda ()
                 (sb-cpu-affinity:with-cpu-affinity-mask (mask :save t)
                     (sb-cpu-affinity:clear-cpu-affinity-mask mask)
