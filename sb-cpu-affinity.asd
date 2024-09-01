@@ -12,12 +12,13 @@
 (defvar *gcc-options* '("-shared" "-fPIC"))
 
 (defmethod output-files ((o compile-op) (c c-so-source-file))
-  (list (make-pathname :type "so"
-                       :defaults (component-pathname c))))
+  (list (make-pathname 
+          :directory '(:absolute "lib64")
+          :name "cpu-affinity-wrapper"
+          :type "so" )))
 
 (defmethod perform ((o load-op) (c c-so-source-file))
-  (destructuring-bind (so) (input-files o c)
-    (sb-alien:load-shared-object so)))
+    (sb-alien:load-shared-object "/lib64/cpu-affinity-wrapper.so"))
 
 (defmethod perform ((o compile-op) (c c-so-source-file))
   (destructuring-bind (so) (output-files o c)
