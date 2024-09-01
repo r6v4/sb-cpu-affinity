@@ -18,8 +18,8 @@ package.
   mask, which is never freed by the system -- at least not
   on the Lisp side: freeing this memory causes glibc to complain
   about a double-free, and breaks SBCL.
-
-  Patches and/or explantions for this welcome.
+  In other words, sbcl will not release each 128-byte mask created by the package when it is running.
+  Wait until the sbcl process ends before releasing all resources.
 
 ## install
 ```bash
