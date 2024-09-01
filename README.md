@@ -66,6 +66,10 @@ make
                 (sb-cpu-affinity:with-cpu-affinity-mask (mask :save t)
                     (sb-cpu-affinity:clear-cpu-affinity-mask mask)
                     (setf (sb-cpu-affinity:cpu-affinity-p my-vcpu mask) t)
-                        (loop (progn (sleep 1) (format t "~A,~A~%" my-worker-number my-vcpu)))))))))
+                        (loop
+                            (progn
+                                (sleep 1)
+                                (format t " [~A, ~A] " my-worker-number my-vcpu)
+                                (finish-output) ))))))))
 
 ```
