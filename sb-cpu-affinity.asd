@@ -18,7 +18,11 @@
           :type "so" )))
 
 (defmethod perform ((o load-op) (c c-so-source-file))
-    (sb-alien:load-shared-object "/lib64/cpu-affinity-wrapper.so"))
+    (sb-alien:load-shared-object 
+       (make-pathname 
+          :directory '(:absolute "lib64")
+          :name "cpu-affinity-wrapper"
+          :type "so" )))
 
 (defmethod perform ((o compile-op) (c c-so-source-file))
   (destructuring-bind (so) (output-files o c)
