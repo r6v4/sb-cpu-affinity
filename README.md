@@ -3,15 +3,15 @@
   SB-CPU-AFFINITY is a simple API to Linux scheduler affinity masks for SBCL.    
   See documentation of symbols exported from SB-CPU-AFFINITY package.
 
-## author:
+## author
 
   fork from [nikodemus's repo](https://github.com/nikodemus/sb-cpu-affinity)
 
-## license:
+## license
 
   MIT-style. See file LICENSE for details.
 
-## issues:
+## issues
 
   Currently each call to GET-CPU-AFFINITY-MASK    
   (and WITH-CPU-AFFINITY-MASK) mallocs 128 bytes of memory for the mask,    
