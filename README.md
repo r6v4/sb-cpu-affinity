@@ -59,17 +59,17 @@ make
 ## more example
 ```common-lisp
 (let ((all-worker-count 16)
-      (all-vcpu-count 8))
+      (all-vcpu-count 8) )
     (loop for my-worker-number from 0 below all-worker-count do
         (let ((my-vcpu (nth-value 1 (floor my-worker-number all-vcpu-count))))
             (sb-thread:make-thread (lambda ()
                 (sb-cpu-affinity:with-cpu-affinity-mask (mask :save t)
                     (sb-cpu-affinity:clear-cpu-affinity-mask mask)
                     (setf (sb-cpu-affinity:cpu-affinity-p my-vcpu mask) t)
-                        (loop
-                            (progn
-                                (sleep 1)
-                                (format t " [~A, ~A] " my-worker-number my-vcpu)
-                                (finish-output) ))))))))
+                    (loop
+                        (progn
+                            (sleep 1)
+                            (format t " [~A, ~A] " my-worker-number my-vcpu)
+                            (finish-output) ))))))))
 
 ```
