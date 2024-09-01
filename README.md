@@ -26,7 +26,7 @@ git clone https://github.com/r6v4/sb-cpu-affinity.git
 
 cd sb-cpu-affinity
 
-make #sudo
+if [ ! -f /lib64/cpu-affinity-wrapper.so ]; then make fi
 
 sbcl
 ```
