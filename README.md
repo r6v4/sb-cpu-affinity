@@ -5,7 +5,7 @@ package.
 
 ## author:
 
-  Nikodemus Siivola <nikodemus@random-state.net>
+  fork from [niko's repo](https://github.com/nikodemus/sb-cpu-affinity)
 
 ## license:
 
