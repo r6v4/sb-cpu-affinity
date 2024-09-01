@@ -21,9 +21,11 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
 
-VERSION=0.2
+VERSION=0.2.1
 
-all: clean
+all: 
+	gcc -shared -fPIC cpu-affinity-wrapper.c
+        cp a.out /lib64/cpu-affinity-wrapper.so
 
 clean:
 	rm -f *~ *.o *.fasl *.so *.tar.gz
