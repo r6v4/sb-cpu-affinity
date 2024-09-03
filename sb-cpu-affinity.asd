@@ -12,10 +12,10 @@
 (defvar *gcc-options* '("-shared" "-fPIC"))
 
 (defmethod output-files ((o compile-op) (c c-so-source-file))
-  (list (make-pathname 
+  (make-pathname 
           :directory '(:absolute "lib64")
           :name "cpu-affinity-wrapper"
-          :type "so" )))
+          :type "so" ))
 
 (defmethod perform ((o load-op) (c c-so-source-file))
     (sb-alien:load-shared-object 
